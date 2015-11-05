@@ -25,6 +25,5 @@ export function makeDirective (component) {
 }
 
 export function makeSelector (component) {
-  console.log(component);
   return component.selector.replace(/-([a-z])/g, s => s[1].toUpperCase());
 }

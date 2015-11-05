@@ -1,0 +1,26 @@
+{
+  "version": "1.6.2",
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "target": "ES5",
+    "sourceMap": true
+  },
+  "filesGlob": [
+    "typings/tsd.d.ts",
+    "client/**/*.ts"
+  ],
+  "files": [
+    "typings/tsd.d.ts",
+    "client/app.ts",
+    "client/config.ts",
+    "client/main/main.component.ts",
+    "client/main/main.routes.ts",
+    "client/main/main.ts",
+    "client/utils/component-maker.spec.ts",
+    "client/utils/component-maker.ts",
+    "client/utils/di.ts",
+    "client/utils/route-maker.ts"
+  ]
+}

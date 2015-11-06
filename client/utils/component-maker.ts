@@ -9,7 +9,9 @@ export function makeDirective (component) {
     };
 
     if (component.template && component.templateUrl) {
+      /* tslint:disable:max-line-length */
       throw new Error(`${component.selector} cannot have a templateUrl AND an inline template.`);
+      /* tslint:enable */
     } else if (component.template) {
       angular.extend(ddo, {
         template: component.template

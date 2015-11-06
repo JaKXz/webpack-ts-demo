@@ -1,5 +1,5 @@
-import {Inject} from '../utils/di';
-import {MainComponent} from './main.component';
+import Inject from '../utils/di';
+import MainComponent from './main.component';
 
 export class MainRoutes {
   public $stateProvider: angular.ui.IStateProvider;

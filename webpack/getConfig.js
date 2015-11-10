@@ -4,9 +4,13 @@ const path = require('path');
 const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const distPath = path.resolve(__dirname, '..', 'dist');
+const loaders = require('./loaders');
 
 module.exports = function (context) {
+  context = context || 'dev';
+  const production = context === 'prod';
   let plugins = [
+    new webpack.optimize.CommonsChunkPlugin('vendor', '[name].[hash].bundle.js'),
     new htmlWebpackPlugin({
       template: path.join(__dirname, '..', 'index.html'),
       inject: 'body',
@@ -14,13 +18,13 @@ module.exports = function (context) {
     })
   ];
 
-  if (context === 'prod') {
+  if (production) {
     plugins.push(new webpack.optimize.UglifyJsPlugin());
   }
 
   return {
-    devtool: 'eval-source-map',
-    debug: true,
+    devtool: 'inline-source-map',
+    debug: !production,
     cache: true,
     verbose: true,
     displayErrorDetails: true,
@@ -30,7 +34,11 @@ module.exports = function (context) {
     },
 
     entry: {
-      app: './client/app.ts'
+      app: './client/app.ts',
+      vendor: [
+        'angular',
+        'angular-ui-router'
+      ]
     },
 
     output: {
@@ -48,18 +56,21 @@ module.exports = function (context) {
 
     module: {
       preLoaders: [
-        { test: /\.tsx?$/, loader: 'tslint' }
+        loaders.tslint
       ],
       loaders: [
-        { test: /\.ts$/, loaders: ['ng-annotate', 'ts'] },
-        { test: /\.jade$/, loader: 'jade' },
-        { test: /\.html$/, loader: 'raw' },
-        { test: /\.css$/, loader: 'style-loader!css-loader?sourceMap' },
-        { test: /\.svg/, loader: 'url' },
-        { test: /\.eot/, loader: 'url' },
-        { test: /\.woff/, loader: 'url' },
-        { test: /\.woff2/, loader: 'url' },
-        { test: /\.ttf/, loader: 'url' },
+        loaders.typescript,
+        loaders.jade,
+        loaders.html,
+        loaders.css,
+        loaders.svg,
+        loaders.eot,
+        loaders.woff,
+        loaders.woff2,
+        loaders.ttf
+      ],
+      postLoaders: [
+        loaders.istanbulInstrumenter
       ]
     },
 

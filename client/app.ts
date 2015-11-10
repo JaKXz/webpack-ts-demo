@@ -6,9 +6,7 @@ import {appModuleName, appModuleVendorDependencies} from './config';
 // Instantiate and bootstrap AuguryCore App
 angular
   .module(appModuleName, appModuleVendorDependencies)
-  .config(($locationProvider) => {
-    $locationProvider.html5Mode(true);
-  });
+  .config(($locationProvider) => $locationProvider.html5Mode(true));
 angular
   .element(document)
   .ready(() => angular.bootstrap(document, [appModuleName]));

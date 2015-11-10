@@ -9,6 +9,7 @@ const loaders = require('./loaders');
 module.exports = function (context) {
   context = context || 'dev';
   const production = context === 'prod';
+  const test = context === 'test';
   let plugins = [
     new webpack.optimize.CommonsChunkPlugin('vendor', '[name].[hash].bundle.js'),
     new htmlWebpackPlugin({
@@ -18,8 +19,12 @@ module.exports = function (context) {
     })
   ];
 
+  let postLoaders = [];
+
   if (production) {
     plugins.push(new webpack.optimize.UglifyJsPlugin());
+  } else if (test) {
+    postLoaders.push(loaders.istanbulInstrumenter);
   }
 
   return {
@@ -34,7 +39,9 @@ module.exports = function (context) {
     },
 
     entry: {
-      app: './client/app.ts',
+      app: [
+        './client/app.ts'
+      ],
       vendor: [
         'angular',
         'angular-ui-router'
@@ -69,9 +76,7 @@ module.exports = function (context) {
         loaders.woff2,
         loaders.ttf
       ],
-      postLoaders: [
-        loaders.istanbulInstrumenter
-      ]
+      postLoaders: postLoaders
     },
 
     devServer: {

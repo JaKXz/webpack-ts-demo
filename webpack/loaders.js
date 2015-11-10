@@ -1,7 +1,13 @@
+//TODO use object.assign here
 exports.typescript = {
   test: /\.ts$/,
   loaders: ['ng-annotate', 'ts'],
   exclude: /\.spec\.ts$/
+};
+
+exports.typescriptTest = {
+  test: /\.ts$/,
+  loaders: ['ng-annotate', 'ts']
 };
 
 exports.jade = {

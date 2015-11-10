@@ -3,13 +3,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
-const distPath = path.resolve(__dirname, '..', 'dist');
+const distAbsolutePath = path.resolve(__dirname, '..', 'dist');
 const loaders = require('./loaders');
 
 module.exports = function (context) {
   context = context || 'dev';
   const production = context === 'prod';
-  const test = context === 'test';
   let plugins = [
     new webpack.optimize.CommonsChunkPlugin('vendor', '[name].[hash].bundle.js'),
     new htmlWebpackPlugin({
@@ -19,12 +18,8 @@ module.exports = function (context) {
     })
   ];
 
-  let postLoaders = [];
-
   if (production) {
     plugins.push(new webpack.optimize.UglifyJsPlugin());
-  } else if (test) {
-    postLoaders.push(loaders.istanbulInstrumenter);
   }
 
   return {
@@ -49,7 +44,7 @@ module.exports = function (context) {
     },
 
     output: {
-      path: distPath,
+      path: distAbsolutePath,
       filename: '[name].[hash].bundle.js',
       publicPath: '/',
       sourceMapFilename: '[name].[hash].bundle.js.map',
@@ -75,14 +70,13 @@ module.exports = function (context) {
         loaders.woff,
         loaders.woff2,
         loaders.ttf
-      ],
-      postLoaders: postLoaders
+      ]
     },
 
     devServer: {
       inline: true,
       colors: true,
-      contentBase: distPath,
+      contentBase: distAbsolutePath,
       publicPath: '/'
     },
 

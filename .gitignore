@@ -3,3 +3,4 @@ client/**/*.js
 *.js.map
 dist
 typings
+coverage/

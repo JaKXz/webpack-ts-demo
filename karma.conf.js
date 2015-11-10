@@ -4,12 +4,14 @@ module.exports = function (config) {
   config.set({
     frameworks: ['mocha', 'chai', 'sinon'],
 
-    files: ['client/**/*.spec.ts'],
+    files: ['mocha.conf.js', 'client/**/*.spec.ts'],
 
     preprocessors: {
       'client/**/*.ts': [
         'webpack',
-        'sourcemap',
+        'sourcemap'
+      ],
+      'client/**/!(*.spec).ts': [
         'coverage'
       ]
     },
@@ -48,14 +50,12 @@ module.exports = function (config) {
     reporters: ['mocha', 'coverage'],
     coverageReporter: {
       reporters: [
-        { type: 'json' },
+        { type: 'lcov' },
         { type: 'html' },
         { type: 'text-summary' }
       ],
-      dir: './coverage'
+      dir: './coverage/client/'
     },
-
-    port: 9999,
 
     colors: true,
 

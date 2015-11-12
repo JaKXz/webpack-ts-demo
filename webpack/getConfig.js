@@ -3,7 +3,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
-const distPath = path.resolve(__dirname, '..', 'dist');
+const distAbsolutePath = path.resolve(__dirname, '..', 'dist');
 const loaders = require('./loaders');
 
 module.exports = function (context) {
@@ -34,7 +34,9 @@ module.exports = function (context) {
     },
 
     entry: {
-      app: './client/app.ts',
+      app: [
+        './client/app.ts'
+      ],
       vendor: [
         'angular',
         'angular-ui-router'
@@ -42,7 +44,7 @@ module.exports = function (context) {
     },
 
     output: {
-      path: distPath,
+      path: distAbsolutePath,
       filename: '[name].[hash].bundle.js',
       publicPath: '/',
       sourceMapFilename: '[name].[hash].bundle.js.map',
@@ -68,16 +70,13 @@ module.exports = function (context) {
         loaders.woff,
         loaders.woff2,
         loaders.ttf
-      ],
-      postLoaders: [
-        loaders.istanbulInstrumenter
       ]
     },
 
     devServer: {
       inline: true,
       colors: true,
-      contentBase: distPath,
+      contentBase: distAbsolutePath,
       publicPath: '/'
     },
 

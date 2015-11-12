@@ -2,9 +2,16 @@ const loaders = require('./webpack/loaders');
 
 module.exports = function (config) {
   config.set({
-    frameworks: ['mocha', 'chai', 'sinon'],
+    frameworks: [
+      'mocha',
+      'chai',
+      'sinon',
+      'sinon-chai',
+      'chai-things',
+      'chai-as-promised'
+    ],
 
-    files: ['mocha.conf.js', 'client/**/*.spec.ts'],
+    files: ['client/**/*.spec.ts'],
 
     preprocessors: {
       'client/**/*.ts': [
@@ -18,7 +25,7 @@ module.exports = function (config) {
 
     webpack: {
       verbose: true,
-      devtool: 'source-map',
+      devtool: 'inline-source-map',
       resolve: {
         modulesDirectories: ['node_modules'],
         extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']

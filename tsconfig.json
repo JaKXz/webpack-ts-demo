@@ -1,5 +1,5 @@
 {
-  "version": "1.6.2",
+  "version": "1.8.2",
   "compilerOptions": {
     "experimentalDecorators": true,
     "module": "commonjs",
@@ -8,10 +8,12 @@
     "sourceMap": true
   },
   "filesGlob": [
+    "mocha.conf.ts",
     "typings/tsd.d.ts",
     "client/**/*.ts"
   ],
   "files": [
+    "mocha.conf.ts",
     "typings/tsd.d.ts",
     "client/app.ts",
     "client/config.ts",
@@ -22,5 +24,8 @@
     "client/utils/component-maker.ts",
     "client/utils/di.ts",
     "client/utils/route-maker.ts"
-  ]
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  }
 }

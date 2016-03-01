@@ -31,9 +31,6 @@ module.exports = function (config) {
         extensions: ['', '.webpack.js', '.web.js', '.ts', '.js']
       },
       module: {
-        preLoaders: [
-          loaders.tslint
-        ],
         loaders: [
           loaders.typescriptTest,
           loaders.jade,

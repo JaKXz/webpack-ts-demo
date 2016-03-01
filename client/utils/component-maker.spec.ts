@@ -1,4 +1,5 @@
 import {makeDirective, makeSelector} from './component-maker';
+import {expect} from 'chai';
 
 describe('Component Maker', () => {
   describe('Make directive', () => {

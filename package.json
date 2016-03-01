@@ -16,11 +16,8 @@
     "extensions": [
       ".ts"
     ],
-    "exclude": [
-      "mocha.conf.ts",
-      "**/*.js",
-      "**/*.jade",
-      "client/**/*.spec.ts"
+    "include": [
+      "client/**/!(*.spec).ts"
     ]
   },
   "author": "Jason Kurian <jgkurian@me.com>",

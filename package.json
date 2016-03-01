@@ -8,9 +8,20 @@
     "lint": "tslint 'client/**/*.ts'",
     "postinstall": "npm run typings",
     "start": "webpack-dev-server --inline --colors --display-error-details --display-cached",
-    "clean": "rimraf dist/ && rimraf coverage/",
+    "clean": "rimraf dist/ coverage/",
     "build": "npm run clean && webpack --progress --colors",
-    "test": "karma start"
+    "test": "nyc karma start"
+  },
+  "nyc": {
+    "extensions": [
+      ".ts"
+    ],
+    "exclude": [
+      "mocha.conf.ts",
+      "**/*.js",
+      "**/*.jade",
+      "client/**/*.spec.ts"
+    ]
   },
   "author": "Jason Kurian <jgkurian@me.com>",
   "license": "MIT",
@@ -35,12 +46,14 @@
     "karma-webpack": "^1.7.0",
     "mocha": "^2.4.5",
     "ng-annotate-loader": "0.1.0",
+    "nyc": "^6.0.0",
     "raw-loader": "^0.5.1",
     "rimraf": "^2.5.2",
     "sinon": "^1.17.3",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.0",
     "ts-loader": "^0.8.1",
+    "tsd": "^0.6.5",
     "tslint-loader": "^2.1.0",
     "typescript": "^1.8.2",
     "url-loader": "^0.5.7",

@@ -17,9 +17,6 @@ module.exports = function (config) {
       'client/**/*.ts': [
         'webpack',
         'sourcemap'
-      ],
-      'client/**/!(*.spec).ts': [
-        'coverage'
       ]
     },
 
@@ -51,15 +48,7 @@ module.exports = function (config) {
       noInfo: true // prevent console spamming when running in Karma!
     },
 
-    reporters: ['mocha', 'coverage'],
-    coverageReporter: {
-      reporters: [
-        { type: 'lcov' },
-        { type: 'html' },
-        { type: 'text-summary' }
-      ],
-      dir: './coverage/client/'
-    },
+    reporters: ['mocha'],
 
     colors: true,
 

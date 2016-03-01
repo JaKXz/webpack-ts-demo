@@ -1,6 +1,11 @@
 node_modules/
+
+dist/
+typings/
+
+coverage/
+.nyc_output/
+
 client/**/*.js
 *.js.map
-dist
-typings
-coverage/
+mocha.conf.js

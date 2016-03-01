@@ -3,7 +3,6 @@ import 'angular-ui-router';
 
 import {appModuleName, appModuleVendorDependencies} from './config';
 
-// Instantiate and bootstrap AuguryCore App
 angular
   .module(appModuleName, appModuleVendorDependencies)
   .config(($locationProvider) => $locationProvider.html5Mode(true));

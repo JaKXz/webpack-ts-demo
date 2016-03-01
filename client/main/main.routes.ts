@@ -1,7 +1,7 @@
 import Inject from '../utils/di';
 import MainComponent from './main.component';
 
-export class MainRoutes {
+export default class MainRoutes {
   public $stateProvider: angular.ui.IStateProvider;
   public $urlRouterProvider: angular.ui.IUrlRouterProvider;
 

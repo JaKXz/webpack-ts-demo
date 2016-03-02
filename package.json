@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
-    "build": "npm run clean && cross-env NODE_ENV=production webpack --progress --colors",
+    "prebuild": "npm run clean",
+    "build": "cross-env NODE_ENV=production webpack --progress --colors",
     "clean": "rimraf dist/ coverage/",
     "lint": "tslint 'client/**/*.ts'",
     "postinstall": "npm run typings",
@@ -18,6 +19,9 @@
     ],
     "include": [
       "client/**/!(*.spec).ts"
+    ],
+    "require": [
+      "tsc"
     ]
   },
   "author": "Jason Kurian <jgkurian@me.com>",
@@ -52,7 +56,7 @@
     "ts-loader": "^0.8.1",
     "tsd": "^0.6.5",
     "tslint-loader": "^2.1.0",
-    "typescript": "^1.8.2",
+    "typescript": "^1.8.6",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1"

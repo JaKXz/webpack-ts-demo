@@ -1,6 +1,7 @@
 import {makeDirective, makeSelector} from './component-maker';
 import {expect} from 'chai';
 
+/* tslint:disable:max-line-length */
 describe('Component Maker', () => {
   describe('Make directive', () => {
     it('should throw an error when an inline template and templateUrl are specified');

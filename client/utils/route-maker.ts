@@ -14,5 +14,5 @@ function makeRoute (moduleName) {
             route.config.templateUrl
         });
       }]);
-  }
+  };
 }

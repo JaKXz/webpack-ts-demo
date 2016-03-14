@@ -1,7 +1,3 @@
-export function makeSelector (component) {
-  return component.selector.replace(/-([a-z])/g, s => s[1].toUpperCase());
-}
-
 export function makeDirective (component) {
   return () => {
     let ddo = {
@@ -28,4 +24,8 @@ export function makeDirective (component) {
 
     return angular.extend(ddo, component.options);
   };
+}
+
+export function makeSelector (component) {
+  return component.selector.replace(/-([a-z])/g, s => s[1].toUpperCase());
 }

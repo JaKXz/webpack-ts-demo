@@ -11,9 +11,9 @@ export default class MainRoutes {
   ) {
       $stateProvider
         .state('main', {
-          controller: MainComponent,
+          url: '/',
           controllerAs: 'main',
-          url: '/'
+          controller: MainComponent
         });
     }
 }

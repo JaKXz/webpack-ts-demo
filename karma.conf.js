@@ -32,9 +32,6 @@ module.exports = function (config) {
           loaders.typescriptTest,
           loaders.jade,
           loaders.html
-        ],
-        postLoaders: [
-          loaders.istanbulInstrumenter
         ]
       },
       stats: {

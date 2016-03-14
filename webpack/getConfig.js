@@ -3,28 +3,29 @@
 const path = require('path');
 const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
-const distAbsolutePath = path.resolve(__dirname, '..', 'dist');
 const loaders = require('./loaders');
 
 module.exports = function (context) {
   context = context || 'dev';
-  const production = context === 'prod';
+  const isProduction = context === 'production';
+  const distAbsolutePath = path.resolve(__dirname, '..', 'dist');
+
   let plugins = [
     new webpack.optimize.CommonsChunkPlugin('vendor', '[name].[hash].bundle.js'),
     new htmlWebpackPlugin({
       template: path.join(__dirname, '..', 'index.html'),
       inject: 'body',
-      minify: false
+      minify: isProduction
     })
   ];
 
-  if (production) {
+  if (isProduction) {
     plugins.push(new webpack.optimize.UglifyJsPlugin());
   }
 
   return {
     devtool: 'inline-source-map',
-    debug: !production,
+    debug: !isProduction,
     cache: true,
     verbose: true,
     displayErrorDetails: true,
@@ -34,9 +35,7 @@ module.exports = function (context) {
     },
 
     entry: {
-      app: [
-        './client/app.ts'
-      ],
+      app: './client/app.ts',
       vendor: [
         'angular',
         'angular-ui-router'

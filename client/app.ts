@@ -1,6 +1,3 @@
-import 'angular';
-import 'angular-ui-router';
-
 import {appModuleName, appModuleVendorDependencies} from './config';
 
 angular
